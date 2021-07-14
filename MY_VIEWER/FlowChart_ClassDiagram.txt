@@ -1,0 +1,22 @@
+3D_VIEWER
+
+[ Basic FlowChart ]
+
+1. 파일을 입력한다
+1.1 입력 받은 파일이 어떤 확장자를 가지는지 찾아낸다. 그리고 전달한다.
+
+2. 입력 받은 파일을 Parsing 한다 
+2.1 입력 받은 파일은 확장자가 어떤 것이냐에 따라서 내부 Method가 달라진다. ( Abstract class 하나 선언 후, ext 별 동적 할당 기능 필요 )
+
+3. Parsing한 파일을 Viewer에 표시한다.
+
+[ Class 목록 ]
+1. MY_VIEWER : 플로우 전체를 관리할 수 있는 Main Class.
+
+2. FILE_MANAGER : 입력 받은 파일을 총 관리하는 책임을 맡는다. 해당 파일이 어떤 확장자를 가지는지 체크하여 반환한다.
+- 확장자 관리용 Header 정의 필요. Enum Class
+
+3. 3D_READER : 입력받은 파일을 Parsing 하고 OpenGL에서 그릴 수 있는 형식으로 자료형을 반환시켜야함.
+OBJ_READER , DAE_READER , MPQ_READER ... 
+
+4. 3D_VIEWER : 3D_READER에서 입력받은 데이터를 OPEN_GL로 표시 가능하게 하는 클래스. 
