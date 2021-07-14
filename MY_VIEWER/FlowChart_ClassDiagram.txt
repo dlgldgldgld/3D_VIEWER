@@ -11,7 +11,9 @@
 3. Parsing한 파일을 Viewer에 표시한다.
 
 [ Class 목록 ]
-1. MY_VIEWER : 플로우 전체를 관리할 수 있는 Main Class.
+1. MY_VIEWER
+플로우 전체를 관리할 수 있는 Main Class. File_manager에서부터 확장자를 입력 받은 후, 
+알맞은 확장자의 Class를 입력 받음.
 
 2. FILE_MANAGER : 입력 받은 파일을 총 관리하는 책임을 맡는다. 해당 파일이 어떤 확장자를 가지는지 체크하여 반환한다.
 - 확장자 관리용 Header 정의 필요. Enum Class
