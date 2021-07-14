@@ -123,6 +123,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\CLogTrace.h" />
+    <ClInclude Include="..\Source\CLogTraceType.h" />
+    <ClInclude Include="..\Source\fileExtension.h" />
+    <ClInclude Include="..\Source\fileManager.h" />
+    <ClInclude Include="..\Source\myViewer.h" />
+    <ClInclude Include="..\Source\OBJReader.h" />
+    <ClInclude Include="..\Source\ThreeDOReader.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Source\CLogTrace.cpp" />
+    <ClCompile Include="..\Source\fileManager.cpp" />
+    <ClCompile Include="..\Source\myViewer.cpp" />
+    <ClCompile Include="..\Source\OBJReader.cpp" />
+    <ClCompile Include="..\Source\ThreeDOReader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
