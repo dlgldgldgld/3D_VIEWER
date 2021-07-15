@@ -11,6 +11,7 @@ void logTrace::CLogTrace::Clear()
 	}
 }
 
+
 logTrace::CLogTrace::CLogTrace( )
 	: m_outLog ( nullptr )
 	, m_Init ( false )
@@ -21,6 +22,27 @@ logTrace::CLogTrace::CLogTrace( )
 logTrace::CLogTrace::~CLogTrace()
 {
 	Clear( );
+}
+
+logTrace::CLogTrace * logTrace::CLogTrace::GetInstance()
+{
+	if (m_pInst == nullptr)
+	{
+		m_pInst = new CLogTrace;
+	}
+
+	return m_pInst;
+}
+
+void logTrace::CLogTrace::DestroyInstance()
+{
+	if (m_pInst == nullptr)
+	{
+		return;
+	}
+
+	delete m_pInst;
+	m_pInst = nullptr;
 }
 
 bool logTrace::CLogTrace::Init( const char * filePath , const char * appName)
@@ -75,3 +97,6 @@ void logTrace::CLogTrace::WriteLog( const logType & logType, char const * format
 	va_end( argptr );
 	return;
 }
+
+//****************************
+logTrace::CLogTrace * logTrace::CLogTrace::m_pInst = nullptr;

@@ -36,6 +36,12 @@
     <ClInclude Include="..\Source\CLogTraceType.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="CGPoint.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Common.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\myViewer.cpp">

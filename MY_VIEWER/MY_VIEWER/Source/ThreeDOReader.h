@@ -6,7 +6,7 @@ namespace myviewer
 {
 	class ThreeDOReader
 	{
-	private :
+	protected :
 		std::string m_fileName ;
 
 	public : 

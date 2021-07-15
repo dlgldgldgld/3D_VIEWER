@@ -11,15 +11,22 @@ const char * const LOG_FILE_NAME = "log.txt";
 
 class CLogTrace
 {
+private:
+	CLogTrace();
+	~CLogTrace();
+
 private :
 	bool   m_Init;
 	FILE * m_outLog ;
 
-	void Clear( );
+	static CLogTrace * m_pInst;
+
+
 
 public : 
-	CLogTrace( ) ;
-	virtual ~CLogTrace( ) ;
+	void Clear( );
+	static CLogTrace* GetInstance( );
+	static void DestroyInstance( );
 
 public  :
 	bool Init( const char * filePath , const char * appName ) ;
