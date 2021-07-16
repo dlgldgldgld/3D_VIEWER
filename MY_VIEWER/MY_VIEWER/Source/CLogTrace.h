@@ -18,10 +18,7 @@ private:
 private :
 	bool   m_Init;
 	FILE * m_outLog ;
-
 	static CLogTrace * m_pInst;
-
-
 
 public : 
 	void Clear( );

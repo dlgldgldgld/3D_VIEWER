@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\CGPoint.h" />
     <ClInclude Include="..\Source\CLogTrace.h" />
     <ClInclude Include="..\Source\CLogTraceType.h" />
     <ClInclude Include="..\Source\Common.h" />
@@ -131,7 +132,6 @@
     <ClInclude Include="..\Source\myViewer.h" />
     <ClInclude Include="..\Source\OBJReader.h" />
     <ClInclude Include="..\Source\ThreeDOReader.h" />
-    <ClInclude Include="CGPoint.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\CLogTrace.cpp" />
