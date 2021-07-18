@@ -39,7 +39,10 @@
     <ClInclude Include="..\Source\Common.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\CGPoint.h">
+    <ClInclude Include="..\Source\CGPoint3d.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\CGPoint2d.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

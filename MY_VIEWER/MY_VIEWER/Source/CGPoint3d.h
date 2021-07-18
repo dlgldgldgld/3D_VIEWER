@@ -9,8 +9,8 @@ private :
 	T m_z;
 
 public :
-	 CGPoint3d( ) = default;
-	~CGPoint3d( ) = default;
+	  CGPoint3d() = default;
+	  ~CGPoint3d() = default;
 	 CGPoint3d( const T & _x, const T & _y, const T & _z );
 
 	void SetX(const T & _x );
