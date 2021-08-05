@@ -1,7 +1,10 @@
 #pragma once
 
+
 #include <string>
-#include "Common.h"
+#include <vector>
+#include "CGVertexList.h"
+#include "CGFace.h"
 
 namespace myviewer
 {
@@ -9,6 +12,12 @@ namespace myviewer
 	{
 	private :
 		std::string m_fileName ;
+
+		vList  m_vList;
+		vtList m_vtList;
+		vnList m_vnList;
+
+		CGFaceList m_faceList;
 
 	protected : 
 		FILE * m_pfile = nullptr;
@@ -23,7 +32,8 @@ namespace myviewer
 
 	public : 
 		bool Initialize( __in const std::string & fileName );
-		virtual bool Convert ( ) = 0;
+		virtual bool FileRead ( ) = 0;
+		virtual bool Convert  ( ) = 0;
 
 	};
 

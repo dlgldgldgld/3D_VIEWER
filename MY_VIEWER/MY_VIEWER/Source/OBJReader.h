@@ -13,7 +13,8 @@ namespace myviewer
 		 OBJReader( );
 		~OBJReader( );
 
-		bool Convert( ) override ;
+		bool FileRead ( ) override;
+		bool Convert ( ) override ;
 
 	};
 }

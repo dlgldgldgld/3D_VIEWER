@@ -2,7 +2,15 @@
 
 myviewer::ThreeDOReader::~ThreeDOReader()
 {
+	if ( m_pfile != nullptr )
+	{
+		fclose(m_pfile);
+		m_pfile = nullptr;
+	}
 
+	m_vList.clear();
+	m_vnList.clear();
+	m_vtList.clear();
 }
 
 bool myviewer::ThreeDOReader::FileOpen()
@@ -26,13 +34,11 @@ bool myviewer::ThreeDOReader::Initialize(__in const std::string & fileName)
 {
 	if ( false == Setting( fileName ) )
 	{
-		pLog->WriteLog(logTrace::logType::LogError, "SetFile Error." );
 		return false;
 	}
 
-	if (false == FileOpen( ) )
+	if ( false == FileOpen( ) )
 	{
-		pLog->WriteLog(logTrace::logType::LogError, "%s file open and read Fail!", fileName.c_str( ) ) ;
 		return false;
 	}
 

@@ -123,8 +123,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\CGFace.h" />
     <ClInclude Include="..\Source\CGPoint2d.h" />
     <ClInclude Include="..\Source\CGPoint3d.h" />
+    <ClInclude Include="..\Source\CGVertexList.h" />
     <ClInclude Include="..\Source\CLogTrace.h" />
     <ClInclude Include="..\Source\CLogTraceType.h" />
     <ClInclude Include="..\Source\Common.h" />
