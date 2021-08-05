@@ -7,9 +7,7 @@ namespace myviewer
 	class OBJReader : public ThreeDOReader
 	{
 	private :
-		FILE * m_pfile = nullptr;
-
-		bool FileOpen( ) ;
+		
 
 	public : 
 		 OBJReader( );
