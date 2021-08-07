@@ -14,5 +14,4 @@ namespace myviewer
 	using vtList = std::vector < vtUnit >;
 	using vnList = std::vector < vnUnit >;
 
-	
 }

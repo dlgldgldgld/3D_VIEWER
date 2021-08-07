@@ -17,5 +17,6 @@
 
 } CGFace ;
 
- using CGFaceList = std::vector< CGFace >;
+ using CGFaceElement = std::vector< CGFace >;
+ using CGFaceList    = std::vector< CGFaceElement >;
  

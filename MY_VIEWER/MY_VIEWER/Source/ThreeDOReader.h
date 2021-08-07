@@ -10,8 +10,8 @@ namespace myviewer
 {
 	class ThreeDOReader
 	{
-	private :
-		std::string m_fileName ;
+	protected : 
+		std::string m_fileName;
 
 		vList  m_vList;
 		vtList m_vtList;
@@ -19,7 +19,6 @@ namespace myviewer
 
 		CGFaceList m_faceList;
 
-	protected : 
 		FILE * m_pfile = nullptr;
 
 	public : 
