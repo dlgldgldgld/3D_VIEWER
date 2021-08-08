@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ThreeDOReader.h"
+#include "CGGroup.h"
 
 namespace myviewer
 {
@@ -38,6 +39,8 @@ namespace myviewer
 	class OBJReader : public ThreeDOReader
 	{
 	private :
+		std::vector < CGGroup > m_groupList;
+
 		bool GetVertex( const char * const contents );
 
 		bool GetTextureCoord( const char * const contents );
@@ -50,7 +53,7 @@ namespace myviewer
 
 		bool GetLineElement( const char * const contents );
 
-
+		int  GetAllMtlCount( );
 	public : 
 		 OBJReader( );
 		~OBJReader( );

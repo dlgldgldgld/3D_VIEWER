@@ -190,6 +190,18 @@ bool myviewer::OBJReader::GetFaceElement(const char * const contents)
 	return true;
 }
 
+int myviewer::OBJReader::GetAllMtlCount()
+{
+	size_t mtlCount = 0;
+	size_t groupListSize = m_groupList.size();
+	for ( size_t iCnt = 0; iCnt < groupListSize; iCnt++ )
+	{
+		mtlCount += m_groupList.at(iCnt).GetMtlMapSize();
+	}
+
+	return static_cast<int> (mtlCount);
+}
+
 myviewer::OBJReader::OBJReader( )
 {
 
@@ -203,6 +215,7 @@ myviewer::OBJReader::~OBJReader()
 bool myviewer::OBJReader::FileRead( )
 {
 	char readBuffer[FILE_BUFFER];
+
 	if (m_pfile == nullptr)
 	{
 		assert( ! ( m_pfile == nullptr ) ) ;
@@ -212,6 +225,13 @@ bool myviewer::OBJReader::FileRead( )
 	char * first_letter = nullptr;
 	char * contents = nullptr;
 
+	CGGroup groupElement;
+	mtl_key curr_mtlkey = "default";
+	faceArray curr_faceList;
+
+	bool firstGroup = true;
+	int faceIndex = 0;
+	
 	while (1)
 	{
 		bool isSuccess = false; 
@@ -236,27 +256,106 @@ bool myviewer::OBJReader::FileRead( )
 		else if ( strcmp( first_letter , "vt" ) == 0 )
 		{
 			// textureCoord
-			isSuccess = GetTextureCoord(contents);
+			isSuccess = GetTextureCoord( contents );
 		}
 		else if ( strcmp( first_letter , "vn" ) == 0)
 		{
 			// normal vector
-			isSuccess = GetNormalCoord(contents);
+			isSuccess = GetNormalCoord( contents );
 		}
 		else if ( strcmp( first_letter , "f" ) == 0)
 		{
 			isSuccess = GetFaceElement( contents );
+			faceIndex++;
+			curr_faceList.push_back(faceIndex);
 			// face
 		}
 		else if ( strcmp( first_letter , "l" ) == 0)
 		{
 			// line
 		}
+		else if (    strcmp( first_letter , "g" ) == 0 
+				  || strcmp( first_letter , "o" ) == 0 )
+		{
+			if ( ( firstGroup == true ) && ( faceIndex != 0 ) )
+			{
+				// 첫번째 Group인데 faceIndex가 0이 아니라는 건..?
+				// f ..
+				// f ..
+				// f ..
+				// f ..
+				// g ..
+				// => group name이 설정되지 않은 default group이 존재함.
+				// 이건 그대로 삽입을 한다.
+				groupElement.SetGroupNoName( );
+			}
+			else if ( ( firstGroup == true ) || 
+				      ( curr_faceList.size() == 0 ) )
+			{
+				// 아예 첫번째 Group으로 들어왔을 경우.
+				// => Name만 Setting 하고 continue 진행.
+				if ( 0 == strcmp ( contents , "" ) )
+				{
+					groupElement.SetGroupNoName();
+				}
+				else
+				{
+					// Name이 있다면?
+					groupElement.SetGroupName(contents);
+				}
+				firstGroup = false;
+				continue;
+			}
+			else
+			{
+				groupElement.AddFaceListToMtlMap( curr_mtlkey, curr_faceList);
+				m_groupList.push_back(groupElement);
+
+				groupElement.Clear();
+				curr_faceList.clear();
+				firstGroup = false;
+
+				// 만약 Name이 없는 상태라면?
+				if ( 0 == strcmp(contents, "" ) )
+				{
+					groupElement.SetGroupNoName( );
+				}
+				else
+				{
+					// Name이 있다면?
+					groupElement.SetGroupName(contents);
+				}
+			}
+
+			
+			// group
+		}
+		else if ( strcmp( first_letter , "usemtl" ) == 0)
+		{
+			// mtl info
+			if ( curr_faceList.size() != 0 )
+			{
+				groupElement.AddFaceListToMtlMap( curr_mtlkey , curr_faceList ) ;
+				curr_faceList.clear();
+			}
+
+			curr_mtlkey = contents;
+		}
 
 		// Parsing False.
 	}
 
+	// 순회하였으나 남아있을 경우
+	if ( curr_faceList.size() > 0 )
+	{
+		groupElement.AddFaceListToMtlMap(curr_mtlkey, curr_faceList);
+		m_groupList.push_back(groupElement);
+		groupElement.Clear();
+		curr_faceList.clear();
+	}
 	
+	int mtlCount = GetAllMtlCount( );
+	printf( "mtlCount = %d\n", mtlCount );
 	return true;
 }
 

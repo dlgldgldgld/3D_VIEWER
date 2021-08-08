@@ -124,6 +124,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\CGFace.h" />
+    <ClInclude Include="..\Source\CGGroup.h" />
+    <ClInclude Include="..\Source\CGMaterial.h" />
     <ClInclude Include="..\Source\CGPoint2d.h" />
     <ClInclude Include="..\Source\CGPoint3d.h" />
     <ClInclude Include="..\Source\CGVertexList.h" />
@@ -137,6 +139,7 @@
     <ClInclude Include="..\Source\ThreeDOReader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Source\CGGroup.cpp" />
     <ClCompile Include="..\Source\CLogTrace.cpp" />
     <ClCompile Include="..\Source\fileManager.cpp" />
     <ClCompile Include="..\Source\myViewer.cpp" />
