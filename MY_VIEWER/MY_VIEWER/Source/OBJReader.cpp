@@ -157,15 +157,14 @@ bool myviewer::OBJReader::GetFaceElement(const char * const contents)
 			break;
 		}
 		face_element_token = strtok_s( facelist_token, f_seps2, &next_face_element_token );
-		
+		f_idx++;
 		while ( 1 ) 
 		{
 			if (face_element_token == nullptr)
 			{
 				break;
 			}
-
-			f_idx++;
+			
 			f_value = atoi( face_element_token );
 			switch ( f_idx )
 			{
@@ -179,8 +178,14 @@ bool myviewer::OBJReader::GetFaceElement(const char * const contents)
 				face_value.vnidx = f_value;
 ;				break;
 			}
+			
+			if (next_face_element_token[0] == '/')
+			{
+				f_idx++;
+			}
 
 			face_element_token = strtok_s( nullptr, f_seps2, &next_face_element_token );
+			f_idx++;
 		}
 		face_element.push_back(face_value);
 		facelist_token = strtok_s( NULL , f_seps, &next_facelist_token);
@@ -353,9 +358,7 @@ bool myviewer::OBJReader::FileRead( )
 		groupElement.Clear();
 		curr_faceList.clear();
 	}
-	
-	int mtlCount = GetAllMtlCount( );
-	printf( "mtlCount = %d\n", mtlCount );
+		
 	return true;
 }
 
